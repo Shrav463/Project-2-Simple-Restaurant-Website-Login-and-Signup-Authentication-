@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>log in or sign up</title>
+    <link rel="stylesheet" href="Phase1.css">
+    <script src="https://kit.fontawesome.com/7b01f5f5bf.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="container">
+       <div class="form-box">
+        <h1 id="title">Sign Up</h1>
+        <form id="form">
+            <div class="input-group">
+                <div class="input-field">
+                    <i class="fa-solid fa-user"></i>
+                    <input type="email" id="Email-id" placeholder="Email">   
+                    <span id="email_error"></span> 
+                </div>
+                <div class="input-field" id="namefield">
+                <i class="fa-solid fa-envelope"></i>
+                <input type="text" id="name" placeholder="Name">
+                <span id="name_error"></span>
+                </div>
+                <div class="input-field">
+                <i class="fa-solid fa-lock"></i>
+                <input type="password" id="password-locked" placeholder="Password">
+                <span id="password_error"></span>
+                </div>
+                <p><strong>Forgot Password ?    <a href="#">Click Here!</a></strong></p>
+            </div>
+            <div class="btn-field">
+                <button type="submit" id="signupBtn">Sign up</button>
+                <button type="submit" id="signinBtn" class="disable">Sign in</button>
+            </div>
+        </form>
+       </div>
+    </div>
+    <script>
+      let signupBtn=document.getElementById("signupBtn");  
+      let signinBtn=document.getElementById("signinBtn");
+      let namefield=document.getElementById("namefield");
+      let title=document.getElementById("title");
+      signinBtn.onclick=function(){
+        namefield.style.maxHeight="0";
+        title.innerHTML="Sign In";
+        signupBtn.classList.add("disable");
+        signinBtn.classList.remove("disable");
+      }
+      signupBtn.onclick=function(){
+        namefield.style.maxHeight="60px";
+        title.innerHTML="Sign Up";
+        signupBtn.classList.remove("disable");
+        signinBtn.classList.add("disable");
+      }
+      let name=document.getElementById("name");
+      let email=document.getElementById("Email-id");
+      let password=document.getElementById("password-locked");
+      let form=document.getElementById("form");
+      let name_error=document.getElementById("name_error");
+      form.addEventListener('submit', function(e) {
+        // Validation for sign up
+        if (title.innerHTML === "Sign Up") {
+        if (name.value.trim() === '') {
+            e.preventDefault();
+            name_error.innerHTML = "Name is required";
+            name_error.classList.add('custom-color');
+        } else {
+            name_error.innerHTML = "";
+            name_error.classList.remove('custom-color');
+        }
+
+        if (email.value.trim() === '') {
+            e.preventDefault();
+            email_error.innerHTML = "Enter a valid email";
+            email_error.classList.add('custom-color');
+        } else {
+            email_error.innerHTML = "";
+            email_error.classList.remove('custom-color');
+        }
+
+        if (password.value.trim() === '') {
+            e.preventDefault();
+            password_error.innerHTML = "Password must contain a special character, uppercase, lowercase";
+            password_error.classList.add('custom-color');
+        } else {
+            password_error.innerHTML = "";
+            password_error.classList.remove('custom-color');
+        }
+    }
+    // Validation for sign in
+    else if (title.innerHTML === "Sign In") {
+        if (email.value.trim() === '') {
+            e.preventDefault();
+            email_error.innerHTML = "Enter a valid email";
+            email_error.classList.add('custom-color');
+        } else {
+            email_error.innerHTML = "";
+            email_error.classList.remove('custom-color');
+        }
+
+        if (password.value.trim() === '') {
+            e.preventDefault();
+            password_error.innerHTML = "Password is required.";
+            password_error.classList.add('custom-color');
+        } else {
+            password_error.innerHTML = "";
+            password_error.classList.remove('custom-color');
+        }
+    }
+});
+    </script>
+</body>
+</html>
